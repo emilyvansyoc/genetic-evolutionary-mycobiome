@@ -35,6 +35,8 @@ Code is currently updated for submitted version of manuscript. Restricted dbGaP 
 
 "figure-generation" - R scripts that perform analyses and generate main and supplementary figures (most figures paneled in Illustrator but otherwise fully made in R)  
 `fig1.R`  
+`fig2.R`  
+`fig3_and_figS8_codiversification.R`  
 `figS1_QQplots.R`
 `figS2_linkage_disequilibrium.R`  
 `figS3_FAVannotation.R`
@@ -46,4 +48,6 @@ Code is currently updated for submitted version of manuscript. Restricted dbGaP 
 "R" - miscellaneous helper functions and scripts  
 1. `fx_myCollapse.R`: custom function to collapse count abundance at each taxonomic level 
 2. `fx_myPvalue.R`: custom function to calculate probability of observing a given topological congruency score given random chance  
+3. `colors.R`: sets a color palette for the hominid dataset for all figures  
+
 
