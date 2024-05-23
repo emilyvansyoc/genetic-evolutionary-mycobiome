@@ -31,7 +31,20 @@ Code is currently updated for submitted version of manuscript. Restricted dbGaP 
 9. `mwas.R`: tests each fungal taxa and prokaryotic gene pathway in a linear model  
 
 "phylosymbiosis" - scripts used to compare topological congruency of hominid and mycobiomes. Note; script to create random trees is located at, https://github.com/awbrooks19/phylosymbiosis (written in Python 2)
-1. `topological_congruency.R`: runs TC tests at the OTU and Genus level; basic structure comes from Brooks et al 2016
+1. `topological_congruency.R`: runs TC tests at the OTU and Genus level; basic structure comes from Brooks et al 2016  
+
+"codivergence" - scripts used to compare fungal exact sequence variants from each OTU to hominid phylogeny  
+1. `get_genus_ESVs.R`: from phyloseq object, get exact sequence variants from the sequencing data for each genus and write out to fasta file  
+2. `run-vsearch-derep.sh`: dereplicate exact sequence variants by length and identifier (decreases alignment size)  
+3. `mafft-alignments.sh`: align sequences with MAFFT and trim with clipkit  
+4. `run-seqkit-rename.sh`: uses seqkit to assign unique identifiers to all sequences; required by downstream tree building softwares  
+5. `make_NJ_trees.R`: make neighbor-joining trees using the ape R package  
+6. `replace_neg_branchlengths.R`: quick utility script to replace negative branch lengths; these are a side effect of neighbor-joining trees but can cause downstream issues  
+7. `get_OTU_subtrees.R`: from each genus-level tree, subset to the OTUs that have representation from all four hominids.  
+8. `run-PACO.R`: R script that is submitted as an HPC job to run PACo in a parallel loop (PACo is very slow on bigger trees)  
+9. `run-parafit.R`: run Parafit on each OTU tree  
+10. `results_paco-parafit.R`: combines results from PACo and Parafit, adjusts for multiple comparisons  
+11. `determine_randomchance.R`: shuffles tip labels from the fungal OTU trees to create 100 random trees, then run both PACo and Parafit to determine the odds of observing cophylogeny given random chance  
 
 "figure-generation" - R scripts that perform analyses and generate main and supplementary figures (most figures paneled in Illustrator but otherwise fully made in R)  
 `fig1.R`  
@@ -43,7 +56,7 @@ Code is currently updated for submitted version of manuscript. Restricted dbGaP 
 `figS4_fungi-eqtl-abundance.R`  
 `figS5_kazachstania_abund-prev.R`  
 `figS6_mwas.R`  
-`figS7_hominid-alphadiv.R`
+`figS7_hominid-alphadiv.R`  
 
 "R" - miscellaneous helper functions and scripts  
 1. `fx_myCollapse.R`: custom function to collapse count abundance at each taxonomic level 
