@@ -15,7 +15,9 @@ library(rstatix)
 ### ---- generate manhattan plots ----
 
 ## get GWAS data for Manhattan plots
-load(file = "R/gwas-output/sigtaxa_alleffects.RData")
+load(file = "data/sigtaxa_alleffects.RData")
+sigtaxa <- unique(allsig$Taxa)
+load(file = "data/sigs_SNPandStructural.RData")
 
 
 ## for each taxa, get Manhattan plot coordinates for chromosome names
@@ -110,16 +112,14 @@ manplot <- ggplot(mandf, aes(x = BPcum, y = -log10(P))) +
 ## ---- generate locus zoom plots ----
 
 # get eQTL data
-myids <- read.table("R/gwas-output//unique_mycAVS_SNPandStructural.txt", sep = "\t", header = TRUE) 
-mygte <- readxl::read_xlsx("~/OneDrive - The Pennsylvania State University/Bordenstein Lab/Biobanks-Analyses/HMP-Analysis/GWAS/gwas_results.xlsx", sheet = "GTExResults") %>% 
-  rename(Gencode = `Gencode Id`,
-         Gene = `Gene Symbol`,
-         Variant = `Variant Id`,
-         SNPID = `SNP Id`,
-         Pval = `P-Value`)  %>% 
+myids <- read.table("data/unique_mycAVS_SNPandStructural.txt", sep = "\t", header = TRUE) 
+mygte <- read.table("data/gtex_results.txt", header = TRUE, sep = "\t") %>% 
+  rename(Gencode = `Gencode.Id`,
+         Gene = `Gene.Symbol`,
+         Variant = `Variant.Id`,
+         SNPID = `SNP.Id`,
+         Pval = `P.Value`)  %>% 
   filter(SNPID %in% myids$SNPID)
-# get list of taxa
-load("R/gwas-output/sigs_SNPandStructural.RData")
 ## get list of taxa
 tax <- allsig %>% dplyr::select(Taxa, SNPID, `Variant Type`) %>% filter(!Taxa %in% "Class_Saccharomycetes") %>% drop_na() 
 # subset the taxa that had SNPs of eQTLs
@@ -166,9 +166,6 @@ cols <- hue_pal()(22)
 
 ### ---- plot1: kazachstania chromosome 16 (CDH13) ----
 
-# get linkage disequilibrium for chr 16
-ld16 <- read.table("gwas-out/ld_reports/gcta_chr16.score.ld", header = TRUE) %>% dplyr::select(-SNP)
-
 # get kazachstania: CHROMOSOME 16
 plotdf1 <- df %>% 
   filter(taxa %in% ("Genus_Kazachstania")) %>% 
@@ -182,9 +179,7 @@ plotdf1 <- df %>%
   # add qtls
   left_join(wtax %>% dplyr::select(SNPID, Gene, Tissue), by = c("ID" = "SNPID")) %>% 
   # make for plot
-  mutate(is.qtl = if_else(!is.na(Gene), Gene, "")) %>% 
-  # add linkage disequilibrium
-  left_join(ld16 %>% dplyr::select(bp, mean_rsq, ldscore), by = c("POS" = "bp"))
+  mutate(is.qtl = if_else(!is.na(Gene), Gene, "")) 
 
 # get position for text label of CDH13 (from Ensembl)
 lab16 <- mean(c(82.660408, 83.830204))
@@ -203,9 +198,6 @@ ch16top <- topplot(plotdf1, cols[16]) +
 ## ---- plot2: kazachstania chromosome 4 (ANAPC10) ----
 
 
-# get linkage report
-ld4 <- read.table("gwas-out/ld_reports/gcta_chr4.score.ld", header = TRUE) 
-
 # get eqtls for chr 4 (multiple genes per qtl - just need the list of snps)
 c4qtl <- wtax %>% filter(str_detect(Variant, "chr4")) %>% distinct(SNPID)
 
@@ -222,10 +214,7 @@ plotdf2 <- df %>%
   # add qtls
   #left_join(wtax %>% dplyr::select(SNPID, Gene, Tissue), by = c("ID" = "SNPID")) %>% 
   # make for plot
-  mutate(Gene = if_else(ID %in% c4qtl$SNPID, "is.qtl", NA)) %>% 
-  # add linkage disequilibrium
-  left_join(ld4 %>% dplyr::select(bp, mean_rsq, ldscore), by = c("POS" = "bp"))
-
+  mutate(Gene = if_else(ID %in% c4qtl$SNPID, "is.qtl", NA)) 
 # get position for text label of ANAPC10 (from Ensembl)
 lab4 <- mean(c(145.888264, 146.019693))
 
@@ -244,9 +233,6 @@ ch4top <- topplot(plotdf2, cols[4]) +
 
 ## ----- plot3: pleosporales chromosome 1 (PTPRC) ----
 
-# get ld report
-ld1 <- read.table("gwas-out/ld_reports/gcta_chr1.score.ld", header = TRUE)
-
 # build dataframe
 plotdf3 <- df %>% 
   filter(taxa %in% ("Order_Pleosporales")) %>% 
@@ -261,9 +247,7 @@ plotdf3 <- df %>%
   # add qtls
   left_join(wtax %>% dplyr::select(SNPID, Gene, Tissue), by = c("ID" = "SNPID")) %>% 
   # make for plot
-  mutate(is.qtl = if_else(!is.na(Gene), Gene, "")) %>% 
-  # add linkage disequilibrium
-  left_join(ld1 %>% dplyr::select(bp, mean_rsq, ldscore), by = c("POS" = "bp"))
+  mutate(is.qtl = if_else(!is.na(Gene), Gene, ""))
 
 # get position for text label of ANAPC10 (from Ensembl)
 lab1 <- mean(c(198.607801, 198.726545))
@@ -289,6 +273,7 @@ ggsave(final.plot, filename = "figures/most_gwas_v1.png", height = 17, width = 2
 ## ---- build Kazachstania boxplot ----
 
 # get genotypes
+#### RESTRICTED DATA
 gen <- read.table("gwas-out/extractsnps.ped", header = FALSE) %>% 
   dplyr::select(V1, V7, V8, V9, V10)
 names(gen) <- c("IID", "rs12149890_a1", "rs12149890_a2", "rs12929586_a1", "rs12929586_a2")
@@ -299,7 +284,7 @@ gen <- gen %>%
 
 
 ### get fungal data
-load("data/updated/phylo_ITS_resolvedNA.RData")
+load("data/phylo_ITS_resolvedNA.RData")
 psf <- psnewname
 # subset gen 
 gensub <- gen %>% 

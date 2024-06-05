@@ -12,16 +12,17 @@ library(Biostrings)
 #### ----- make phyloseq object ----
 
 # get OTU table
-otab <- read.table("~/bioinformatics/gomez-hominid/vsearch-ITS-wild/otutab.txt", sep = "\t", header = TRUE, comment.char = "")
+otab <- read.table("data/hominid_otutab.txt", sep = "\t", header = TRUE, comment.char = "")
 names(otab) <- str_remove(names(otab), "^X")
 names(otab) <- str_remove(names(otab), "_S(\\d){1,4}")
 otab <- otab %>% column_to_rownames(var = ".OTU.ID")
 
 # get sintax and wrangle into submission
-sin <- read.table("~/bioinformatics/gomez-hominid/vsearch-ITS-wild//sintax50.txt", sep = "\t", header = FALSE, comment.char = "", na.strings = "") %>% dplyr::select(V1, V4) %>% separate_wider_delim(cols = V4, names = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"), delim = ",", too_few = "align_start") %>% mutate(OTU_ID = str_extract(V1, "OTU_(\\d){1,4}")) %>% mutate(across(!OTU_ID, ~str_remove(.x, "[:alpha:]:"))) %>% column_to_rownames(var = "OTU_ID") %>% dplyr::select(-V1)
+sin <- read.table("data/hominid_sintax50.txt", sep = "\t", header = FALSE, comment.char = "", na.strings = "") %>% dplyr::select(V1, V4) %>% separate_wider_delim(cols = V4, names = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"), delim = ",", too_few = "align_start") %>% mutate(OTU_ID = str_extract(V1, "OTU_(\\d){1,4}")) %>% mutate(across(!OTU_ID, ~str_remove(.x, "[:alpha:]:"))) %>% column_to_rownames(var = "OTU_ID") %>% dplyr::select(-V1)
 
 # get sample metadata
-meta <- readxl::read_xlsx("~/bioinformatics/gomez-hominid/EVS_MetadataITS.xlsx")
+##### not publicly shared
+meta <- readxl::read_xlsx("private/hominid_metadata.xlsx")
 ### add two blank files to the metadata file
 bls <- data.frame(SampleID = c("Blank1", "Blank2"),
                   FileID = c("Blank1_009_A09_011", "Blank2_009_A10_011"),
@@ -33,7 +34,7 @@ bls <- data.frame(SampleID = c("Blank1", "Blank2"),
 meta <- meta %>% rbind(bls)
 
 # get reference sequences
-seqs <- readDNAStringSet("~/bioinformatics/gomez-hominid/vsearch-ITS-wild/otus.fasta")
+seqs <- readDNAStringSet("data/hominid_otus.fasta")
 names(seqs) <- str_extract(names(seqs), "OTU_(\\d){1,100000}")
 
 #### make phyloseq
@@ -49,12 +50,9 @@ ps <- ps %>%
   ps_mutate(Species = case_when(
     str_detect(Group, "BaAka") ~ "Human_BaAka",
     str_detect(Group, "Bantu") ~ "Human_Bantu",
-    str_detect(Group, "USA") ~ "Human_American",
-    str_detect(Group, "Mangabey") ~ "Mangabey",
     str_detect(Group, "Lowland") ~ "Lowland Gorilla",
     str_detect(Group, "Mountain") ~ "Mountain Gorilla",
     str_detect(Group, "Chimp") ~ "Chimp",
-    str_detect(Group, "Elephant") ~ "Elephant",
     str_detect(Group, "Blanks") ~ "Blanks"
   ),
   SpeciesCaptive = paste(Captivity_Status, Species, sep = "_")) %>% 
@@ -160,11 +158,4 @@ tax_table(psname) <- newtt
 
 # rename and save
 psf <- psname
-save(psf, file = "~/bioinformatics/r-projects/hominid/updated_methods/phyloITS.RData")
-
-# save reference sequences for alignment
-# add taxonomy
-taxn <- psf %>% tt_get() %>% as.data.frame() %>% rownames_to_column(var = "OTU") %>% mutate(full = paste(Phylum, Class, Order, Family, Genus, Species, OTU, sep = ";")) %>% select(full)
-taxa_names(psf) <- taxn$full
-
-writeXStringSet(psf@refseq, filepath = "~/bioinformatics/gomez-hominid/vsearch-ITS-wild/align_otus/filtered_otu_seqs.fasta")
+save(psf, file = "private/hominid_phyloITS.RData")
