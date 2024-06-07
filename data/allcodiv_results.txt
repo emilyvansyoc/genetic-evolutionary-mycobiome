@@ -1,0 +1,43 @@
+"otu"	"Phylum"	"Class"	"Order"	"Family"	"Genus"	"Species"	"parastat"	"para.pfdr"	"pacor2"	"paco.pfdr"
+"OTU_144"	"Ascomycota"	"Dothideomycetes"	"Dothideales"	"Saccotheciaceae"	"Aureobasidium"	"Aureobasidium Genus"	4.11746808193201	0.0381818181818182	0.374792067991865	0
+"OTU_839"	"Basidiomycota"	"Agaricomycetes"	"Agaricales"	"Psathyrellaceae"	"Parasola"	"Parasola Genus"	0.00407238314867915	0.14	0.18762856633312	0
+"OTU_299"	"Ascomycota"	"Eurotiomycetes"	"Eurotiales"	"Aspergillaceae"	"Talaromyces"	"Talaromyces Genus"	0.221408697723317	0.0381818181818182	0.153935463347635	0
+"OTU_405"	"Ascomycota"	"Sordariomycetes"	"Xylariales"	"Xylariaceae"	"Xylaria"	"Xylaria Genus"	0.108713496124029	0.0381818181818182	0.149163406228304	0
+"OTU_749"	"Ascomycota"	"Sordariomycetes"	"Sordariales"	"Sordariaceae"	"Neurospora"	"Neurospora_sublineolata"	0.00158396864635961	1	0.139674777416979	0
+"OTU_192"	"Ascomycota"	"Saccharomycetes"	"Saccharomycetales"	"Pichiaceae"	"Saturnispora"	"Saturnispora_diversa"	0.0501603712316335	0.0381818181818182	0.134026132615304	0
+"OTU_785"	"Basidiomycota"	"Agaricomycetes"	"Agaricales"	"Psathyrellaceae"	"Parasola"	"Parasola Genus"	0.00115915651281168	0.714	0.112237961346932	0
+"OTU_2215"	"Ascomycota"	"Dothideomycetes"	"Pleosporales"	"Pleosporales Order"	"Pleosporales Order"	"Pleosporales Order"	0.0195034378143065	0.0646153846153846	0.097997009871458	0
+"OTU_765"	"Ascomycota"	"Dothideomycetes"	"Pleosporales"	"Didymellaceae"	"Epicoccum"	"Epicoccum Genus"	0.0012110473722995	1	0.085534636893044	0.018006148440931
+"OTU_1196"	"Ascomycota"	"Sordariomycetes"	"Glomerellales"	"Plectosphaerellaceae"	"Plectosphaerellaceae Family"	"Plectosphaerellaceae Family"	0.00139570918162598	0.42	0.05159783244019	0.628352490421455
+"OTU_526"	"Ascomycota"	"Saccharomycetes"	"Saccharomycetales"	"Saccharomycetales Order"	"Saccharomycetales Order"	"Saccharomycetales Order"	0.00457659503928942	1	0.0421559509514839	0.245417134306024
+"OTU_242"	"Basidiomycota"	"Malasseziomycetes"	"Malasseziales"	"Malasseziaceae"	"Malassezia"	"Malassezia_arunalokei"	0.0123819916757324	0.0381818181818182	0.03948724371375	0
+"OTU_499"	"Ascomycota"	"Sordariomycetes"	"Trichosphaeriales"	"Trichosphaeriaceae"	"Nigrospora"	"Nigrospora_saccharicola"	0.408320690323913	0.0381818181818182	0.036033866181136	0
+"OTU_4"	"Ascomycota"	"Saccharomycetes"	"Saccharomycetales"	"Dipodascaceae"	"Geotrichum"	"Geotrichum_candidum"	12.4510133854864	0.0381818181818182	0.034010652695777	0
+"OTU_224"	"Ascomycota"	"Dothideomycetes"	"Pleosporales"	"Pleosporales Order"	"Pleosporales Order"	"Pleosporales Order"	0.191369734227752	0.0381818181818182	0.032968229110115	0
+"OTU_589"	"Ascomycota"	"Sordariomycetes"	"Hypocreales"	"Stachybotryaceae"	"Myxospora"	"Myxospora Genus"	0.00520444160685376	1	0.026221325521278	0.773063973063973
+"OTU_372"	"Basidiomycota"	"Agaricomycetes"	"Polyporales"	"Ganodermataceae"	"Ganoderma"	"Ganoderma_eickeri"	0.0147259160241571	0.12	0.025686494705583	0.069023569023569
+"OTU_375"	"Ascomycota"	"Sordariomycetes"	"Xylariales"	"Xylariaceae"	"Xylaria"	"Xylaria Genus"	0.0855987122100863	0.0381818181818182	0.021721480101988	0.222999222999222
+"OTU_139"	"Ascomycota"	"Saccharomycetes"	"Saccharomycetales"	"Pichiaceae"	"Pichia"	"Pichia_kluyveri"	0.0074721425456309	1	0.019205052776641	0
+"OTU_273"	"Ascomycota"	"Sordariomycetes"	"Glomerellales"	"Plectosphaerellaceae"	"Chordomyces"	"Chordomyces_antarcticus"	0.00489180099560778	1	0.016355746944937	1
+"OTU_78"	"Ascomycota"	"Saccharomycetes"	"Saccharomycetales"	"Saccharomycetales_fam_Incertae_sedis"	"Candida"	"Candida_albicans"	0.123486071119847	0.18375	0.016147220471681	0
+"OTU_219"	"Ascomycota"	"Sordariomycetes"	"Sordariomycetes Class"	"Sordariomycetes Class"	"Sordariomycetes Class"	"Sordariomycetes Class"	0.102286522383757	0.74	0.01468396400945	0.018006148440931
+"OTU_164"	"Ascomycota"	"Ascomycota Phylum"	"Ascomycota Phylum"	"Ascomycota Phylum"	"Ascomycota Phylum"	"Ascomycota Phylum"	0.00662590531553753	1	0.014619250814772	0.165656565656566
+"OTU_80"	"Ascomycota"	"Sordariomycetes"	"Hypocreales"	"Hypocreaceae"	"Trichoderma"	"Trichoderma Genus"	0.0527608895657492	0.574736842105263	0.012768678538835	0
+"OTU_253"	"Basidiomycota"	"Agaricomycetes"	"Agaricales"	"Psathyrellaceae"	"Coprinellus"	"Coprinellus_disseminatus"	0.00910235407490253	1	0.012007190214221	0.828282828282828
+"OTU_201"	"Basidiomycota"	"Tremellomycetes"	"Tremellales"	"Trimorphomycetaceae"	"Saitozyma"	"Saitozyma_podzolica"	0.0148368600027851	1	0.00853052497745199	1
+"OTU_107"	"Ascomycota"	"Dothideomycetes"	"Pleosporales"	"Periconiaceae"	"Periconia"	"Periconia Genus"	0.207441310098639	1	0.00728010168209103	0.018006148440931
+"OTU_147"	"Ascomycota"	"Lecanoromycetes"	"Gyalectales"	"Phlyctidaceae"	"Phlyctis"	"Phlyctis_speirea"	0.00033148455902479	1	0.00645743614846495	1
+"OTU_79"	"Ascomycota"	"Sordariomycetes"	"Trichosphaeriales"	"Trichosphaeriaceae"	"Nigrospora"	"Nigrospora_hainanensis"	1.07390636719841	0.0381818181818182	0.00605738821463098	0
+"OTU_128"	"Ascomycota"	"Dothideomycetes"	"Pleosporales"	"Roussoellaceae"	"Roussoellaceae Family"	"Roussoellaceae Family"	0.072686401070822	1	0.00564330059220497	0.443722943722944
+"OTU_74"	"Ascomycota"	"Ascomycota Phylum"	"Ascomycota Phylum"	"Ascomycota Phylum"	"Ascomycota Phylum"	"Ascomycota Phylum"	0.00731845943768326	1	0.00322823646413395	1
+"OTU_33"	"Ascomycota"	"Ascomycota Phylum"	"Ascomycota Phylum"	"Ascomycota Phylum"	"Ascomycota Phylum"	"Ascomycota Phylum"	0.0081768992389927	1	0.00322403993791598	1
+"OTU_25"	"Ascomycota"	"Saccharomycetes"	"Saccharomycetales"	"Saccharomycodaceae"	"Hanseniaspora"	"Hanseniaspora_pseudoguilliermondii"	0.47756529763474	1	0.00269603910822702	0
+"OTU_43"	"Ascomycota"	"Saccharomycetes"	"Saccharomycetales"	"Saccharomycetaceae"	"Saccharomyces"	"Saccharomyces Genus"	0.882492199074791	0.321176470588235	0.00263550785126998	0
+"OTU_50"	"Ascomycota"	"Saccharomycetes"	"Saccharomycetales"	"Saccharomycetales Order"	"Saccharomycetales Order"	"Saccharomycetales Order"	0.00871624470715078	1	0.00263215989532795	1
+"OTU_494"	"Ascomycota"	"Saccharomycetes"	"Saccharomycetales"	"Pichiaceae"	"Pichia"	"Pichia_bovicola"	0.00464618993923155	1	0.00248679497408	1
+"OTU_10"	"Ascomycota"	"Saccharomycetes"	"Saccharomycetales"	"Saccharomycetales Order"	"Saccharomycetales Order"	"Saccharomycetales Order"	0.0220235951428711	1	0.00215788861428401	0.918876262626262
+"OTU_18"	"Basidiomycota"	"Tremellomycetes"	"Trichosporonales"	"Trichosporonaceae"	"Trichosporon"	"Trichosporon Genus"	0.0566843416843945	1	0.00147952543973195	1
+"OTU_14"	"Ascomycota"	"Dothideomycetes"	"Botryosphaeriales"	"Botryosphaeriaceae"	"Lasiodiplodia"	"Lasiodiplodia_theobromae"	9.15383964756131	0.0646153846153846	0.00117900397889004	0
+"OTU_6"	"Ascomycota"	"Dothideomycetes"	"Capnodiales"	"Cladosporiaceae"	"Cladosporium"	"Cladosporium Genus"	22.3950797562513	0.0381818181818182	0.00109354091088698	0
+"OTU_1"	"Ascomycota"	"Saccharomycetes"	"Saccharomycetales"	"Pichiaceae"	"Pichia"	"Pichia_bovicola"	0.236045743705027	1	0.000638685692109009	1
+"OTU_12"	"Basidiomycota"	"Malasseziomycetes"	"Malasseziales"	"Malasseziaceae"	"Malassezia"	"Malassezia Genus"	0.68133345039289	1	NA	NA
