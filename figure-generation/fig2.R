@@ -28,10 +28,10 @@ source("R/colors.R")
 #### ---- Panel A: topological congruency ----
 
 ## load hominid dendrogram
-load("updated_methods/figures/hominidtree_forplot.RData")
+load("data/hominidtree_forplot.RData")
 
 # get fungal dendrogram
-load("updated_methods/topo_cong/fung_bray_dendrogram.RData")
+load("data/fung_bray_dendrogram.RData")
 host <- rt
 
 # get phylopic images
@@ -95,8 +95,8 @@ ggsave(filename = "updated_methods/fig_images/topocong_phylopic_v1.png", plot = 
 
 ### ---- panel B: iris plot ----
 
-# get fungal data
-load("updated_methods/phyloITS.RData")
+# get fungal data; RESTRICTED
+load("my-path/hominid_phyloITS.RData")
 
 # genus level
 psfilt <- psf %>% 

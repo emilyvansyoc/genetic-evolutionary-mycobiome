@@ -8,7 +8,7 @@ library(microViz)
 library(ggpubr)
 
 ## load phyloseq
-load("updated_methods/phyloITS.RData")
+load("private/hominid_phyloITS.RData")
 psfix <- psf %>% tax_fix()
 
 # get genera
@@ -20,7 +20,7 @@ tt <- psfix %>% tt_get() %>% as.data.frame() %>%
   rownames_to_column(var = "OTUID")
 
 ## get file to match each read to its assigned OTU
-uc <- read.table("~/bioinformatics/gomez-hominid/vsearch-ITS-wild/usearch.uc", sep = "\t", header = FALSE) %>% 
+uc <- read.table("data/usearch.uc", sep = "\t", header = FALSE) %>% 
   dplyr::select(V1, V9, V10)
 names(uc) <- c("HIT", "READ", "OTU")
 dat <- uc %>% 
@@ -28,10 +28,10 @@ dat <- uc %>%
   mutate(otulab = str_extract(OTU, "OTU_(\\d){1,10}"))
 
 # get the file of all sequences
-allfa <- readDNAStringSet("~/bioinformatics/gomez-hominid/vsearch-ITS-wild/all.fasta")
+allfa <- readDNAStringSet("data/all.fasta")
 
 # get metadata for hominid name
-meta <- readxl::read_xlsx("~/bioinformatics/gomez-hominid/EVS_MetadataITS.xlsx") %>% 
+meta <- readxl::read_xlsx("private/hominid_MetadataITS.xlsx") %>% 
   mutate(hominid = case_when(
     str_detect(Group, "Human") ~ "Human",
     str_detect(Group, "Chimp") ~ "Chimp",
@@ -57,7 +57,7 @@ iddf <- data.frame(fullname = ids) %>%
   mutate(halfid = paste(otulab, Species, hominid, sep = ";"))
 
 # set output directory
-outdir <- "~/bioinformatics/r-projects/hominid/updated_methods/codiv/working_haplo/"
+outdir <- "output-dir/"
 if(!dir.exists(outdir)) {dir.create(outdir)}
 
 # ---- make function ----
@@ -102,7 +102,7 @@ myHaplo <- function(genus) {
 ### ---- run for haplotypes ----
 
 # set output directory
-outdir <- "~/bioinformatics/r-projects/hominid/updated_methods/codiv/genus_haplotypes_04-09-2024/"
+outdir <- "output-dir"
 if(!dir.exists(outdir)) {dir.create(outdir)}
 
 # run function
@@ -111,7 +111,7 @@ lapply(gen, function(x) myHaplo(x))
 ### ---- check output statistics ----
 
 # get stats for haplotypes
-hapstat <- read.table("updated_methods/codiv/stats_genushaplotypes.txt", sep = "\t", header = TRUE) %>% 
+hapstat <- read.table("stats_genushaplotypes.txt", sep = "\t", header = TRUE) %>% 
   mutate(id = sapply(str_split(file, "haplotypes_"), `[`, 2))
 
 # get stats for derep

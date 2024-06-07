@@ -6,7 +6,7 @@ library(phyloseq)
 library(microViz)
 
 ## get fungal ID's
-ids <- readxl::read_xlsx("SRAMetadata_Nash2017_PRJNA356769.xlsx") %>% 
+ids <- readxl::read_xlsx("data/SRAMetadata_Nash2017_PRJNA356769.xlsx") %>% 
   filter(!str_detect(`Library Name`, "18S")) %>% 
   select(Run, `Sample Name`) %>% 
   mutate(id = sapply(str_split(`Sample Name`, "_"), `[`, 1)) %>% 
@@ -18,7 +18,7 @@ ids <- readxl::read_xlsx("SRAMetadata_Nash2017_PRJNA356769.xlsx") %>%
 fids <- ids %>% dplyr::select(id) %>% distinct() %>% rename(RANDSID=id) %>% mutate(RANDSID = as.numeric(RANDSID))
 
 ## get WGS metadata
-met <- read.table("runinfo_PRJNA48479.csv", sep = ",", header = TRUE) %>% 
+met <- read.table("data/runinfo_PRJNA48479.csv", sep = ",", header = TRUE) %>% 
   dplyr::select(Run, Sample, SampleName, Subject_ID, Analyte_Type, Model, CenterName, BioSample) %>% 
   column_to_rownames(var = "Run") 
 # get just stool
@@ -27,7 +27,7 @@ mets <- met %>%
 
 #### wrangle to match subject ID to RSID
 ## get sample key (available on dbGaP)
-key <- read.table("data/HMP_samplekey.txt", sep = "\t", header = TRUE) 
+key <- read.table("private/HMP_samplekey.txt", sep = "\t", header = TRUE) 
 ## match to the BioSample Accession
 dat <- mets %>% 
   rownames_to_column(var = "Run") %>% 

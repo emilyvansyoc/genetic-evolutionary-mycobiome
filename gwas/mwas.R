@@ -11,10 +11,10 @@ library(parallel)
 library(doParallel)
 
 ## get fungal data 
-load("data/updated/phylo-ITS-filteredrarefied_nosubset.RData")
+load("data/phylo-ITS-filteredrarefied_nosubset.RData")
 
 # get pathways
-load("wgs-analyses/wgs-data/stool_pathways.RData")
+load("data/stool_pathways.RData")
 
 
 # for now; get just community level

@@ -1,8 +1,13 @@
-
-# get kazachstania abundance
+### plot of Kazachstania abundance and prevalence in the HMP cohort
 library(microViz)
 library(phyloseq)
-load("data/updated/phylo_ITS_resolvedNA.RData")
+library(tidyverse)
+library(ggpubr)
+library(ggtext)
+
+# get data
+
+load("data/phylo_ITS_resolvedNA.RData")
 psf <- psnewname
 psg <- psf %>% tax_fix() %>% tax_glom("Genus")
 taxa_names(psg) <- psg@tax_table[,"Genus"]
@@ -68,5 +73,6 @@ pb <- ggplot(data = kzp, aes(x = prev, y = OTU, fill = iskaz)) +
         axis.ticks.y = element_blank())
 
 ## arrange
-ggarrange(pa,pb, ncol = 2, widths = c(1, 0.5))
+# 6/7 add (A) and (B) labels
+ggarrange(pa,pb, ncol = 2, widths = c(1, 0.5), labels = c("A.", "B."), font.label = list(size = 18))
 ggsave(filename = "figures/kaz_ra_prev.png", dpi = 600)

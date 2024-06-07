@@ -5,7 +5,7 @@ library(ape)
 library(tidyverse)
 
 ## directory to trees
-tdir <- "updated_methods/codiv/genus_trees/NJ_JC_negbl_04-09-2024/"
+tdir <- "directory-to-trees"
 gtrees <- list.files(tdir, pattern = ".newick", full.names = TRUE)
 allgtrees <- list()
 
@@ -58,6 +58,6 @@ for(i in 1:length(gtrees)) {
 } # close i loop
 
 ## save for PACo run
-save(alltrees, file = "updated_methods/codiv/all_otu_subtrees_04-10-2024_nonegbl.RData")
+save(alltrees, file = "data/all_otu_subtrees_04-10-2024_nonegbl.RData")
 
 

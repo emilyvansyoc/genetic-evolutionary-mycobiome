@@ -22,7 +22,7 @@ sin <- read.table("data/hominid_sintax50.txt", sep = "\t", header = FALSE, comme
 
 # get sample metadata
 ##### not publicly shared
-meta <- readxl::read_xlsx("private/hominid_metadata.xlsx")
+meta <- readxl::read_xlsx("private/hominid_metadataITS.xlsx")
 ### add two blank files to the metadata file
 bls <- data.frame(SampleID = c("Blank1", "Blank2"),
                   FileID = c("Blank1_009_A09_011", "Blank2_009_A10_011"),

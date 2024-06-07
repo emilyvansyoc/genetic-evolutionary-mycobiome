@@ -33,7 +33,7 @@ foreach::getDoParRegistered()
 ## ---- get input data -----
 
 # set working directory
-dir <- "/storage/group/srb6251/default/emilyvansyoc/hominid_codiv/"
+dir <- "my-dir"
 
 # get host cophenetic distances
 load(paste0(dir, "host_cophenetic.RData"))

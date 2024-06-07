@@ -11,8 +11,8 @@ library(ggpubr)
 library(rstatix)
 library(ggtext)
 
-# get phyloseq
-load("updated_methods/phyloITS.RData")
+# get phyloseq (restricted)
+load("my-path/hominid_phyloITS.RData")
 
 # rename to scientific name so tip labels match
 psfilt <- psf %>% 

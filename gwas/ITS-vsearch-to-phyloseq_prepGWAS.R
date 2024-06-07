@@ -13,13 +13,13 @@ library(car)
 ## ---- build phyloseq object ----
 
 # OTU table
-otab <- read.table("updated_vsearch/otutab.txt", sep = "\t", header = TRUE, comment.char = "", na.strings = "") %>% column_to_rownames(var = "X.OTU.ID")
+otab <- read.table("data/hmpITS_otutab.txt", sep = "\t", header = TRUE, comment.char = "", na.strings = "") %>% column_to_rownames(var = "X.OTU.ID")
 
 # SINTAX taxonomy
-sin <- read.table("updated_vsearch/sintax50.txt", sep = "\t", header = FALSE, comment.char = "", na.strings = "") %>%  dplyr::select(V1, V4) %>% separate_wider_delim(cols = V4, names = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"), delim = ",", too_few = "align_start") %>% mutate(OTU_ID = str_extract(V1, "OTU_(\\d){1,4}")) %>% mutate(across(!OTU_ID, ~str_remove(.x, "[:alpha:]:"))) %>% column_to_rownames(var = "OTU_ID") %>% dplyr::select(-V1)
+sin <- read.table("data/hmpITS_sintax50.txt", sep = "\t", header = FALSE, comment.char = "", na.strings = "") %>%  dplyr::select(V1, V4) %>% separate_wider_delim(cols = V4, names = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"), delim = ",", too_few = "align_start") %>% mutate(OTU_ID = str_extract(V1, "OTU_(\\d){1,4}")) %>% mutate(across(!OTU_ID, ~str_remove(.x, "[:alpha:]:"))) %>% column_to_rownames(var = "OTU_ID") %>% dplyr::select(-V1)
 
 # metadata
-ids <- readxl::read_xlsx("/path/to/SRAMetadata_Nash2017_PRJNA356769.xlsx") %>% 
+ids <- readxl::read_xlsx("data/SRAMetadata_Nash2017_PRJNA356769.xlsx") %>% 
   filter(!str_detect(`Library Name`, "18S")) %>% 
   select(Run, `Sample Name`) %>% 
   mutate(id = sapply(str_split(`Sample Name`, "_"), `[`, 1)) %>% 
@@ -28,7 +28,7 @@ ids <- readxl::read_xlsx("/path/to/SRAMetadata_Nash2017_PRJNA356769.xlsx") %>%
   mutate(idvisit = paste(id, visit, sep = "_"))
 
 # reference sequences
-seqs <- readDNAStringSet(filepath = "updated_vsearch/otus.fasta")
+seqs <- readDNAStringSet(filepath = "data/otus.fasta")
 names(seqs) <- str_extract(names(seqs), "OTU_(\\d){1,1000}")
 
 ## make phyloseq
@@ -38,7 +38,7 @@ ps <- phyloseq(otu_table(otab, taxa_are_rows = TRUE),
 ps@refseq <- seqs
 
 # save
-save(ps, file = "data/updated/raw-phylo-ITS.RData")
+save(ps, file = "data/raw-phylo-hmpITS.RData")
 
 ## ---- filter fungal kingdom ----
 
@@ -58,16 +58,16 @@ taxa_names(nas)
 fun_ids <- unique(ps1@sam_data$id)
 
 # get IDs of matched WGS data (has already been matched to fungal IDs)
-fam <- read.table("for-gwas/final_indepSNP_remhet_sub.fam", stringsAsFactors = FALSE) %>% 
+fam <- read.table("private/final_indepSNP_remhet_sub.fam", stringsAsFactors = FALSE) %>% 
   dplyr::select(V1, V2)
 names(fam) <- c("FID", "IID")
 
 # get the IDs of genome data
-ids <- read.table("data/IDs.txt", sep = "\t", header = FALSE)
+ids <- read.table("private/hmpIDs.txt", sep = "\t", header = FALSE)
 names(ids) <- "GID"
 
 # these are SAMPLE NAMES; get key to match them to RANSID (what the fungi "id" column is)
-key <- read.table("data/HMP_samplekey.txt", sep = "\t", header = TRUE)
+key <- read.table("private/HMP_samplekey.txt", sep = "\t", header = TRUE)
 length(which(key$SN %in% ids$GID))
 key <- key %>% filter(SAMPLE_USE == "Seq_DNA_WholeGenome; Seq_DNA_SNP")
 # get just the columns we need and samples that match with ITS
@@ -201,7 +201,7 @@ newtt <- psnewname %>% tt_get() %>% as.data.frame() %>% rownames_to_column(var =
 tax_table(psnewname) <- newtt
 
 # save
-save(psnewname, file = "data/updated/phylo_ITS_resolvedNA.RData")
+save(psnewname, file = "data/phylo_ITS_resolvedNA.RData")
 
 ## ---- collapse ----
 
@@ -261,4 +261,4 @@ datCLR <- datCLR[order(match(datCLR$IID, fam$IID)), ]
 
 
 # write to file
-write.table(datCLR, "for-gwas/updated_ITS-forgwas/pheno_ITS.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+write.table(datCLR, "private/pheno_ITS.txt", sep = "\t", row.names = FALSE, quote = FALSE)

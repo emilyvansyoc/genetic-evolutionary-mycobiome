@@ -11,13 +11,13 @@ library(ggtext)
 
 ## ---- ld report ----
 # get LD report
-ld <- read.table("gwas-out/ld_report_snps_all.ld", sep = "\t", header = TRUE)
+ld <- read.table("data/ld_report_snps_all.ld", sep = "\t", header = TRUE)
 
 # remove duplicates (fixed in plink2 but hasn't been implemented)
 ld1 <- ld %>% filter(!SNP_A == SNP_B)
 
 # get only the variants in our mycAVs (not sure why extras are added?)
-myids <- read.table("R/gwas-output//unique_mycAVS_SNPandStructural.txt", sep = "\t", header = TRUE) 
+myids <- read.table("data/unique_mycAVS_SNPandStructural.txt", sep = "\t", header = TRUE) 
 ld2 <- ld1 %>% 
   filter(SNP_A %in% myids$SNPID & SNP_B %in% myids$SNPID)
 
@@ -28,7 +28,7 @@ ldh <- ld2 %>%
 
 ## ---- get ld for each SNP ----
 # get all significant FAVs with their taxa
-load("R/gwas-output/sigs_SNPandStructural.RData")
+load("data/sigs_SNPandStructural.RData")
 allsig <- allsig %>% 
   mutate(chr = sapply(str_split(`Chromosome:Position`, ":"), `[`, 1))
 

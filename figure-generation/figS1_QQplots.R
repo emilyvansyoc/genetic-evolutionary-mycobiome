@@ -12,6 +12,7 @@ library(cowplot)
 
 
 # set pathway to output files (from PLINK)
+### these files are huge and are not storeable on Github; see final publication for GWAS summary statistics
 path <- "gwas-out/updateITS_results_indep_snp/"
 
 # read everything in to one dataframe (small enough to do this!)

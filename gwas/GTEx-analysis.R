@@ -4,13 +4,14 @@
 library(tidyverse)
 
 # get FAVs
-ids <- read.table("R/gwas-output/unique_mycAVS_SNPandStructural.txt", header = TRUE)
+ids <- read.table("data/unique_mycAVS_SNPandStructural.txt", header = TRUE)
 sigs <- dat %>% filter(ID %in% ids$SNPID) %>% mutate(chr = paste0("chr", X.CHROM))
 
 ## ----- convert rsIDs into b38 genomic coordinates -----
 
-## get GTEx lookup table
-gtex <- read.table("GTEx_Analysis_2017-06-05_v8_WholeGenomeSeq_838Indiv_Analysis_Freeze.lookup_table.txt", sep = "\t", header = TRUE)
+## get GTEx lookup table (too big to upload to Github)
+# available from GTEx portal 
+gtex <- read.table("private/GTEx_Analysis_2017-06-05_v8_WholeGenomeSeq_838Indiv_Analysis_Freeze.lookup_table.txt", sep = "\t", header = TRUE)
 
 # decrease size 
 g1 <- gtex %>% filter(chr %in% sigs$chr)
@@ -61,4 +62,4 @@ eqtl <- eqtl %>% full_join(m1) #### THIS MATCHES THE WEB BROWSER RESULTS
 length(unique(eqtl$variant_id[!is.na(eqtl$gene_id)])) # 11 unique variants
 
 # save
-save(eqtl, file = "R/gwas-output/GTEx_sigSNPs_fromLUtable.RData")
+save(eqtl, file = "data/GTEx_sigSNPs_fromLUtable.RData")

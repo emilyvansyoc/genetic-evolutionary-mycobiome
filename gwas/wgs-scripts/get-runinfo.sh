@@ -15,7 +15,7 @@ set -uex
 ACC=PRJNA48479
 
 # input directory
-DIR=/storage/group/srb6251/default/emilyvansyoc/hmp-wgs/
+DIR=/my-dir/
 
 # general output name
 OUTNAME=hmp48479

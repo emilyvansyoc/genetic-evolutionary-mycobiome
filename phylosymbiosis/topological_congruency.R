@@ -8,22 +8,22 @@ library(vegan)
 library(ape)
 
 # get phyloseq
-load("updated_methods/phyloITS.RData")
+load("private/hominid_phyloITS.RData")
 
 
 #### ----- run TC: OTU level -----
 
 # set path to TreeCMP
-TC <- "bin/TreeCmp_v2.0-b76/bin/"
+TC <- "dir/to/TreeCMp"
 
 # set path to output files 
-outpath <- "updated_methods/topo_cong/results_OTUlevel"
+outpath <- "my-output"
 if(!dir.exists(outpath)) {dir.create(outpath)}
 
 
 # run TreeCMP on the random trees versus the host tree 
 system(paste0("java -jar ", TC, "/treeCmp.jar -r ", 
-              "data_topo_cong/hominid-tree.newick -i data_topo_cong/random_hominid.newick -d rc mc tt mt rf -N -o ", 
+              "data/hominid-tree.newick -i data/random_hominid.newick -d rc mc tt mt rf -N -o ", 
               outpath, "/host_v_random.txt"))
 
 # rename to scientific name so tip labels match
@@ -80,12 +80,12 @@ for(i in 1:length(dists)) {
   
   # run
   system(paste0("java -jar ", TC, "/treeCmp.jar -r ", 
-                "data_topo_cong/hominid-tree.newick -i ",  outpath, 
+                "data/hominid-tree.newick -i ",  outpath, 
                 "/fung_", dists[i], ".newick -d rc mc  -N -o ",
                 outpath, "/obs_", dists[i], ".txt"))
 }
 #### get results
-outpath <- "updated_methods/topo_cong/results_OTUlevel"
+outpath <- "my-dir"
 source("R/fx_myPvalue.R")
 # jaccard
 jac <- myPval2(obs = paste0(outpath, "/obs_jaccard.txt"), stoch = paste0(outpath, "/host_v_random.txt"),
@@ -98,16 +98,16 @@ bray <- myPval2(obs = paste0(outpath, "/obs_bray.txt"), stoch = paste0(outpath, 
 ## ----- run TC: genus level ----
 
 # set path to TreeCMP
-TC <- "~/bioinformatics/bin/TreeCmp_v2.0-b76/bin/"
+TC <- "dir/to/TreeCMP"
 
 # set path to output files 
-outpath <- "updated_methods/topo_cong/results_Genuslevel"
+outpath <- "my-dir"
 if(!dir.exists(outpath)) {dir.create(outpath)}
 
 
 # run TreeCMP on the random trees versus the host tree 
 system(paste0("java -jar ", TC, "/treeCmp.jar -r ", 
-              "data_topo_cong/hominid-tree.newick -i data_topo_cong/random_hominid.newick -d rc mc tt mt rf -N -o ", 
+              "data/hominid-tree.newick -i data/random_hominid.newick -d rc mc tt mt rf -N -o ", 
               outpath, "/host_v_random.txt"))
 
 # rename to scientific name so tip labels match
@@ -164,13 +164,13 @@ for(i in 1:length(dists)) {
   
   # run
   system(paste0("java -jar ", TC, "/treeCmp.jar -r ", 
-                "data_topo_cong/hominid-tree.newick -i ",  outpath, 
+                "data/hominid-tree.newick -i ",  outpath, 
                 "/fung_", dists[i], ".newick -d rc mc  -N -o ",
                 outpath, "/obs_", dists[i], ".txt"))
 }
 #### get results
-source("R/topo_congruency/fx_myPval.R")
-outpath <- "updated_methods/topo_cong/results_Genuslevel"
+source("R/fx_myPval.R")
+outpath <- "my-dir"
 # jaccard
 jac <- myPval2(obs = paste0(outpath, "/obs_jaccard.txt"), stoch = paste0(outpath, "/host_v_random.txt"),
                normalized = TRUE) 

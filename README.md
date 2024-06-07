@@ -63,4 +63,7 @@ Code is currently updated for submitted version of manuscript. Restricted dbGaP 
 2. `fx_myPvalue.R`: custom function to calculate probability of observing a given topological congruency score given random chance  
 3. `colors.R`: sets a color palette for the hominid dataset for all figures  
 
+"data" - phyloseq objects and other data to facilitate running the analyses. NOTE: HMP data from dbGaP cannot be shared (restricted access); that data is not provided here. These are other items that cannot be shared publicly are marked with the subdirectory name "/private/"
+
+
 

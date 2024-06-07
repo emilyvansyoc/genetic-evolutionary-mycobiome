@@ -10,7 +10,7 @@ library(parallel)
 
 ## ---- build parallel loop for each alignment fasta ----
 
-dir <- "~/bioinformatics/r-projects/hominid/updated_methods/codiv/align_genus_renamed_04-09-2024/"
+dir <- "path/to/align_genus_renamed_04-09-2024/"
 myfi <- list.files(dir, pattern = "clipkit", full.names = TRUE)
 
 ## remove genera that cannot be aligned with ITS: Fusarium, Asperillus, Penicillum, Cortinarius
@@ -23,7 +23,7 @@ myfi <- myfi[!str_detect(myfi, "unique_clipkit_derep_haplotypes_Penicillium.fast
 #myfi <- myfi[myfi != c("unique_clipkit_derep_haplotypes_Pichia.fasta")]
 
 ## output directories to write tree files
-njdir <- "~/bioinformatics/r-projects/hominid/updated_methods/codiv/genus_trees/NJ_JC_04-09-2024/"
+njdir <- "path/to/genus_trees/NJ_JC_04-09-2024/"
 if(!dir.exists(njdir)) {dir.create(njdir)}
 #dgdir <- "updated_methods/codiv/genus_trees/UPGMA_JC_renamed/"
 #if(!dir.exists(dgdir)) {dir.create(dgdir)}
@@ -36,7 +36,7 @@ n.cores <- parallel::detectCores() - 2
 my.cluster <- parallel::makeCluster(
   n.cores, 
   type = "FORK",
-  outfile = "~/bioinformatics/r-projects/hominid/updated_methods/codiv/make-genus-trees-stdout.log" # prints stdout
+  outfile = "path/to/make-genus-trees-stdout.log" # prints stdout
 )
 
 #check cluster definition (optional)
@@ -51,7 +51,7 @@ foreach(i = 1:length(myfi),
         .errorhandling = "pass" # I have my own error catch below so errors in the loop can be passed 
 ) %dopar% {
   
-  myname <- str_remove(myfi[i], "/Users/epb5360/bioinformatics/r-projects/hominid/updated_methods/codiv/align_genus_renamed_04-09-2024//unique_clipkit_derep_haplotypes_")
+  myname <- str_remove(myfi[i], "/unique_clipkit_derep_haplotypes_")
   myname <- str_remove(myname, ".fasta")
   
   # print progress

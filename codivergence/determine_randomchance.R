@@ -35,16 +35,16 @@ foreach::getDoParRegistered()
 ### ---- set up loop: run parafit first (faster!) ----
 
 # set working directory
-dir <- "/storage/group/srb6251/default/emilyvansyoc/hominid_codiv/"
+dir <- "/mydir/"
 
 # get host cophenetic distances
-load(paste0(dir, "host_cophenetic.RData"))
+load(paste0(dir, "data/host_cophenetic.RData"))
 
 # get OTU trees
-load(paste0(dir, "all_otu_subtrees_04-10-2024_nonegbl.RData"))
+load(paste0(dir, "data/all_otu_subtrees_04-10-2024_nonegbl.RData"))
 
 # set output directory for results
-outdir <- paste0(dir, "random_chance_results/parafit_all")
+outdir <- paste0(dir, "my-output-dir")
 if(!dir.exists(outdir)) {dir.create(outdir)}
 
 #### RUN PARALLEL LOOP 
@@ -56,7 +56,7 @@ foreach(i = 1:length(alltrees),
  cat("\n working on tree ", i, names(alltrees)[[i]])
 
 #### CREATE SHUFFLED TREES
- make tree to shuffle labels
+# make tree to shuffle labels
  shuftree <- list()
 # subset tree
  tr <- alltrees[[i]]
@@ -134,7 +134,7 @@ cat("\n PARAFIT FINISHED: ", i, names(alltrees)[[i]])
 ### ---- set up parallel loop: run PACo -----
 
 # set output directory for results
-outdirP <- paste0(dir, "random_chance_results/paco_all")
+outdirP <- paste0(dir, "output-dir")
 if(!dir.exists(outdirP)) {dir.create(outdirP)}
 
 #### RUN PARALLEL LOOP 

@@ -26,7 +26,7 @@ cat $DATADIR/${arrayoffiles[${SLURM_ARRAY_TASK_ID}]}*.fastq > $DATADIR/${arrayof
 
 
 ## run humann3
-humann --input $DATADIR/${arrayoffiles[${SLURM_ARRAY_TASK_ID}]}_all.fastq --output $OUT --threads $SLURM_CPUS_PER_TASK --input-format fastq --nucleotide-database /storage/group/evk5387/default/emily/refs/human-choco/chocophlan/ --protein-database /storage/group/srb6251/default/emilyvansyoc/refs/uniref/ --metaphlan-options "--bowtie2db /storage/group/evk5387/default/emily/refs/choco/"
+humann --input $DATADIR/${arrayoffiles[${SLURM_ARRAY_TASK_ID}]}_all.fastq --output $OUT --threads $SLURM_CPUS_PER_TASK --input-format fastq --nucleotide-database /refs/human-choco/chocophlan/ --protein-database /refs/uniref/ --metaphlan-options "--bowtie2db /refs/choco/"
 
 ## check for the existence of output files
 if [ -e "$OUT/${arrayoffiles[${SLURM_ARRAY_TASK_ID}]}_all_pathabundance.tsv" ]; then

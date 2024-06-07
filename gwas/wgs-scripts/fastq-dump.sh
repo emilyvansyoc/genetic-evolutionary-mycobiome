@@ -10,7 +10,7 @@ micromamba activate sratools
 set -uex
 
 ### set working directory
-DIR=/storage/group/srb6251/default/emilyvansyoc/hmp-wgs/
+DIR=/my-pathway/
 
 ## name of IDs file
 IDS=$DIR/runids_hmp48479.txt

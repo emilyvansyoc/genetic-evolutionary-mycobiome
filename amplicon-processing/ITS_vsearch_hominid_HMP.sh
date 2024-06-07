@@ -10,10 +10,10 @@ micromamba activate vsearch
 set -uex
 
 # location to raw reads
-RAW=~/bioinformatics/seq-reads/gomez-hominid-raw-reads/Primate_Data/ITS/filtered
+RAW=my-path/hominid_rawITS/filtered
 
 # working directory
-DIR=~/bioinformatics/gomez-hominid/vsearch-ITS-wild/
+DIR=my-path/
 
 # set location to file IDs
 IDS=$DIR/runids_hominid.txt
@@ -34,13 +34,13 @@ mkdir -p $DEREP
 ### ----- run code -----
 
 # merge paired end reads
-cat $IDS | parallel /Users/epb5360/micromamba/envs/vsearch/bin/vsearch --fastq_mergepairs $RAW/{}_R1_001-ITS.fastq.gz --threads 2 --reverse $RAW/{}_R2_001-ITS.fastq.gz --fastq_minovlen 10 --fastq_maxdiffs 20 --fastq_allowmergestagger --fastqout $MERGE/{}_merge.fastq --fastq_eeout --eetabbedout $DIR/stats_vmerge.txt
+cat $IDS | parallel vsearch --fastq_mergepairs $RAW/{}_R1_001-ITS.fastq.gz --threads 2 --reverse $RAW/{}_R2_001-ITS.fastq.gz --fastq_minovlen 10 --fastq_maxdiffs 20 --fastq_allowmergestagger --fastqout $MERGE/{}_merge.fastq --fastq_eeout --eetabbedout $DIR/stats_vmerge.txt
 
 # convert to fasta
-cat $IDS | parallel /Users/epb5360/micromamba/envs/vsearch/bin/seqkit fq2fa $MERGE/{}_merge.fastq -o $TOFA/{}.fasta
+cat $IDS | parallel seqkit fq2fa $MERGE/{}_merge.fastq -o $TOFA/{}.fasta
 
 # do sample-wise dereplication
-cat $IDS | parallel /Users/epb5360/micromamba/envs/vsearch/bin/vsearch --derep_fulllength $TOFA/{}.fasta --output $DEREP/{}_derep.fasta --sizeout --relabel {}.
+cat $IDS | parallel vsearch --derep_fulllength $TOFA/{}.fasta --output $DEREP/{}_derep.fasta --sizeout --relabel {}.
 
 # merge all samples
 cat $DEREP/*_derep.fasta > $DIR/all.fasta

@@ -11,7 +11,7 @@ library(rstatix)
 
 # get data
 # from Ensembl database
-ens <- read.table("R/gwas-output/mycAV-annotation/results_SNPNexus_SNPvstructural/ensembl_SNPs.txt", sep = "\t", header = TRUE, comment.char = "")
+ens <- read.table("data/ensembl_SNPs.txt", sep = "\t", header = TRUE, comment.char = "")
 
 # summarize
 enssum <- ens %>% 

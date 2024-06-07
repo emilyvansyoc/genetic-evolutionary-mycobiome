@@ -13,7 +13,7 @@ mytoken <- "/mytokencharactersfromAPIthingy"
 
 
 # get SNP list
-myids <- read.table("R/gwas-output//unique_mycAVS_SNPandStructural.txt", sep = "\t", header = TRUE) 
+myids <- read.table("data/unique_mycAVS_SNPandStructural.txt", sep = "\t", header = TRUE) 
 snplist <- myids$SNPID
 
 

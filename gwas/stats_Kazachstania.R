@@ -10,14 +10,10 @@ library(ggpubr)
 library(rstatix)
 
 # get the input abundance values for GWAS
-abun <- read.table("for-gwas/updated_ITS-forgwas/pheno_ITS.txt", sep = "\t", header = TRUE)
-
-# get correlated taxa
-cors <- read.table("for-gwas/updated_ITS-forgwas/highcortaxa.txt", sep = "\t", header = TRUE)
-cors[10,] # highly correlated with OTU 266 but not a higher order taxa
+abun <- read.table("private/pheno_ITS.txt", sep = "\t", header = TRUE)
 
 ## get filtered and rarefied phyloseq
-load("data/updated/phylo_ITS_resolvedNA.RData")
+load("data/phylo_ITS_resolvedNA.RData")
 psf <- psnewname
 
 # get Kazachstania

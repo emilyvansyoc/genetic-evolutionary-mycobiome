@@ -14,7 +14,7 @@ library(microViz)
 ## ---- get fungal data ----
 
 ### get fungal data
-load("data/updated/phylo_ITS_resolvedNA.RData")
+load("data/phylo_ITS_resolvedNA.RData")
 psf <- psnewname
 # collapse and process via GWAS 
 # get function
@@ -48,14 +48,14 @@ kz <- allclr %>% dplyr::select(Genus_Kazachstania) %>% rownames_to_column(var = 
 ### ---- get gtes ----
 
 # filter to the variants of interest and get SNP IDs
-myids <- read.table("R/gwas-output//unique_mycAVS_SNPandStructural.txt", sep = "\t", header = TRUE) 
+myids <- read.table("data/unique_mycAVS_SNPandStructural.txt", sep = "\t", header = TRUE) 
 
-mygte <- readxl::read_xlsx("~/OneDrive - The Pennsylvania State University/Bordenstein Lab/Biobanks-Analyses/HMP-Analysis/GWAS/gwas_results.xlsx", sheet = "GTExResults") %>% 
-  rename(Gencode = `Gencode Id`,
-         Gene = `Gene Symbol`,
-         Variant = `Variant Id`,
-         SNPID = `SNP Id`,
-         Pval = `P-Value`) # 67
+mygte <- read.table("data/gtex_results.txt", header = TRUE, sep = "\t") %>% 
+  rename(Gencode = `Gencode.Id`,
+         Gene = `Gene.Symbol`,
+         Variant = `Variant.Id`,
+         SNPID = `SNP.Id`,
+         Pval = `P.Value`) # 67
 # filter
 mygte <- mygte %>% 
   filter(SNPID %in% myids$SNPID)
@@ -63,7 +63,7 @@ mygte <- mygte %>%
 
 ## ---- get ref and alt alleles ----
 
-load("R/gwas-output/GTEx_sigSNPs_fromLUtable.RData")
+load("data/GTEx_sigSNPs_fromLUtable.RData")
 # get sigs
 eqtl <- eqtl %>% drop_na()
 # one ref and alt alleles match ours
@@ -81,6 +81,7 @@ mygte1 <- mygte %>%
 ## ---- get genotypes ----
 
 ## these are PLINK output files 
+#### RESTRICTED
 ped <- read.table("gwas-out/eqtl_genos.ped", header = FALSE)
 map <- read.table("gwas-out/eqtl_genos.map", header = FALSE)
 names(ped) <- c("IID", "FID", "fam1", "fam2", "fam3", "fam4", "rs10020593_a1", "rs10020593_a2", "rs6842499_a1", "rs6842499_a2", "rs2056279_a1", "rs2056279_a2", "rs2056278_a1", "rs2056278_a2", "rs10003727_a1", "rs10003727_a2", "rs7695409_a1", "rs7695409_a2", "rs11734845_a1", "rs11734845_a2", "rs2162092_a1", "rs2162092_a2", "rs1559699_a1", "rs1559699_a2", "rs28673203_a1", "rs28673203_a2", "rs192598_a1", "rs192598_a2")

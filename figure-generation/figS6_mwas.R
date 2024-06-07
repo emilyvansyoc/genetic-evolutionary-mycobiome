@@ -10,10 +10,10 @@ library(ggtext)
 
 
 # get fungi
-load("data/updated/phylo-ITS-filteredrarefied_nosubset.RData")
+load("data/phylo-ITS-filteredrarefied_nosubset.RData")
 
 # get pathways
-load("wgs-analyses/wgs-data/stool_pathways.RData")
+load("data/stool_pathways.RData")
 
 ### get data formatted the same way it was input to the lm
 

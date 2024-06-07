@@ -12,9 +12,9 @@ library(purrr)
 
 
 ## get trees
-load("updated_methods/codiv/all_otu_subtrees_04-10-2024_nonegbl.RData")
+load("data/all_otu_subtrees_04-10-2024_nonegbl.RData")
 # get host cophenetic
-load("updated_methods/codiv/host_cophenetic.RData")
+load("data/host_cophenetic.RData")
 
 # loop
 paralist <- list()
@@ -68,4 +68,4 @@ for(i in 1:length(alltrees)) {
 }
 
 # save output
-save(paradf, file = "updated_methods/codiv/parafit_results_OTUs_nonegbl_04-10-2024.RData")
+save(paradf, file = "data/parafit_results_OTUs_nonegbl_04-10-2024.RData")

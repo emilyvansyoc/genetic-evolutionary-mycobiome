@@ -2,6 +2,7 @@
 # EVS 1/2024
 
 # assuming that DIR=/path/to/files and PLINK and PLINK2 are /paths/to/plink/executables
+# this reads in the VCF directly from dbGaP files -> no additional preprocessing steps
 
 #### ---- QUALITY CONTROL ----
 

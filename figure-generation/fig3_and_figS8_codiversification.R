@@ -12,10 +12,10 @@ library(treeio)
 
 
 ## get OTU trees 
-load("updated_methods/codiv/all_otu_subtrees_04-10-2024_nonegbl.RData")
+load("data/all_otu_subtrees_04-10-2024_nonegbl.RData")
 
 # get sigs
-load("updated_methods/codiv/codiv_tests_final/final_sigs_otus_parafitpaco.RData")
+load("data/final_sigs_otus_parafitpaco.RData")
 
 # get colors
 source("R/colors.R")
@@ -95,7 +95,7 @@ ggsave(filename = "updated_methods/fig_images/codiv_supplementary.png", dpi = 60
 
 ### ----- get full fungi tree and make schematic ----
 
-ftree <- read.tree("updated_methods/codiv/li2021_fungaltree/1672taxa_290genes_bb_1.treefile")
+ftree <- read.tree("data/li2021_fungaltree/1672taxa_290genes_bb_1.treefile")
 
 
 # get tip labels
@@ -104,20 +104,16 @@ ftips <- data.frame(tiplab = ftree$tip.label) %>%
 
 
 # get the genera present in our dataset
-load("updated_methods/codiv/all_genera_list.RData")
+load("data/all_genera_list.RData")
 
 # subset
 fsub <- ftips %>% 
   filter(genus %in% gen)
 
 
-## get our 10 OTU sigs
-#load("updated_methods/codiv/sigs_otus_parafitpaco.RData")
-load("updated_methods/codiv/codiv_tests_final/final_sigs_otus_parafitpaco.RData")
-
 #### get Pleosporales nodes
 # BLAST suggest these may belong to the Thyridariaceae family
-tab <- readxl::read_xlsx(path = "updated_methods/codiv/li2021_fungaltree/1-s2.0-S0960982221001391-mmc3.xlsx", sheet = "B")
+tab <- readxl::read_xlsx(path = "data/li2021_fungaltree/1-s2.0-S0960982221001391-mmc3.xlsx", sheet = "B")
 # get Pleosporale
 pleo <- tab %>% filter(order == "Pleosporales")
 pleosub <- pleo %>% filter(tip_id %in% ftree$tip_id)

@@ -5,10 +5,10 @@ library(ape)
 library(tidyverse)
 
 ## directory to NJ trees
-njdir <- "~/bioinformatics/r-projects/hominid/updated_methods/codiv/genus_trees/NJ_JC_04-09-2024/"
+njdir <- "path/to/NJ_JC_04-09-2024/"
 
 ## output directory to 'fixed' trees
-outdir <- "~/bioinformatics/r-projects/hominid/updated_methods/codiv/genus_trees/NJ_JC_negbl_04-09-2024/"
+outdir <- "path/to/genus_trees/NJ_JC_negbl_04-09-2024/"
 if(!dir.exists(outdir)) {dir.create(outdir)}
 
 ## get trees
@@ -17,7 +17,7 @@ myfi <- list.files(njdir, full.names = TRUE)
 ## loop through
 for(i in 1:length(myfi)) {
   
-  myname <- str_remove(myfi[i], "/Users/epb5360/bioinformatics/r-projects/hominid/updated_methods/codiv/genus_trees/NJ_JC_04-09-2024//NJtree_")
+  myname <- str_remove(myfi[i], "/NJtree_")
   myname <- str_remove(myname, ".newick")
   
   # read tree

@@ -28,7 +28,7 @@ cvd <- ao %>%
 
 
 # get Kazachstania
-kaz <- read.table("gwas-out/updateITS_results_allsnp_allvariant/allsnp_allvariants.Genus_Kazachstania.glm.linear", sep = "\t", header = TRUE, comment.char = "")
+kaz <- read.table("private/outputGWAS_PLINKfiles/allsnp_allvariants.Genus_Kazachstania.glm.linear", sep = "\t", header = TRUE, comment.char = "")
 
 # adjust significance
 kaz <- kaz %>% 

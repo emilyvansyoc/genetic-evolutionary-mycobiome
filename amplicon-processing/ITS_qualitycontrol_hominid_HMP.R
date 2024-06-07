@@ -7,7 +7,7 @@ library(Biostrings)
 library(ShortRead)
 
 ## pathways
-path <- "~/bioinformatics/seq-reads/gomez-hominid-raw-reads/Primate_Data/ITS/"
+path <- "my-path/hominid_rawITS"
 list.files(path)
 
 # get samples in dada2 format
@@ -44,7 +44,7 @@ remN <- filterAndTrim(fnFs, fnFs.filtN, fnRs, fnRs.filtN, maxN = 0, multithread 
                       verbose = TRUE)
 
 # re-set the path for N-removed files
-npath <- "~/bioinformatics/seq-reads/gomez-hominid-raw-reads/Primate_Data/ITS/filtN/"
+npath <- "my-path/hominid_rawITS/filtN/"
 
 ## ---- get primer hits ----
 
@@ -157,7 +157,7 @@ sum(trims$reads.out)# not super applicable - includes elephants
 # get metadata for sample names to remove elephants (& blanks?)
 
 #### get sample metadata
-meta <- readxl::read_xlsx("~/bioinformatics/gomez-hominid/EVS_MetadataITS.xlsx")
+meta <- readxl::read_xlsx("my-path/EVS_MetadataITS.xlsx")
 
 ### add two blank files to the metadata file
 bls <- data.frame(SampleID = c("Blank1", "Blank2"),

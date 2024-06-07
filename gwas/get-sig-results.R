@@ -11,7 +11,8 @@ library(microViz)
 library(cowplot)
 
 # set pathway to output files (straight from PLINK)
-path <- "gwas-out/updateITS_results_allsnp_allvariant/"
+# too big to share on Github but GWAS summary stats will be made available on publication
+path <- "private/outputGWAS_PLINKfiles"
 
 
 ### ---- get effect sizes ----
@@ -90,8 +91,8 @@ length(unique(allsig$ID[allsig$Type == "Structural"])) # 9
 
 
 names(allsig) <- c("Taxa", "Variant Type", "SNPID", "Chromosome:Position", "Beta", "MAF", "Raw P", "Genome-Wide Q")
-write.table(allsig, file = "R/gwas-output/sigtable_SNPandStructural.txt", sep = "\t", row.names = FALSE, quote = FALSE)
-save(allsig, file = "R/gwas-output/sigs_SNPandStructural.RData")
+write.table(allsig, file = "data/sigtable_SNPandStructural.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+save(allsig, file = "data/sigs_SNPandStructural.RData")
 
 # get updated mycavs
 myc <- allsig %>% ungroup() %>% dplyr::select(SNPID) %>% distinct()
@@ -99,11 +100,11 @@ myc <- allsig %>% ungroup() %>% dplyr::select(SNPID) %>% distinct()
 ## ---- format for downstream analysis: SNPNEXUS ----
 
 # write out
-write.table(myc, file = "R/gwas-output//unique_mycAVS_SNPandStructural.txt", sep = "\t", row.names = FALSE)
+write.table(myc, file = "data/unique_mycAVS_SNPandStructural.txt", sep = "\t", row.names = FALSE)
 
 # format for SNPnexus
 nex <- myc %>% mutate(Type = "dbsnp") %>% rename(Name = SNPID) %>% relocate(Type)
-write.table(nex, file = "R/gwas-output/unique_mycAVs_forSNPNexus_SNPandStructural.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+write.table(nex, file = "data/unique_mycAVs_forSNPNexus_SNPandStructural.txt", sep = "\t", row.names = FALSE, quote = FALSE)
 
 
 
