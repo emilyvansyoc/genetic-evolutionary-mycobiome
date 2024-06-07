@@ -12,7 +12,7 @@ library(rstatix)
 library(ggtext)
 
 # get phyloseq (restricted)
-load("my-path/hominid_phyloITS.RData")
+load("private/hominid_phyloITS.RData")
 
 # rename to scientific name so tip labels match
 psfilt <- psf %>% 
@@ -64,7 +64,7 @@ p1 <- ggboxplot(adiv, x = "SciName", y = "Shannon",
   theme_pubr(base_size = 18) +
   theme(axis.text.x = element_markdown())
 
-ggsave(filename = "updated_methods/fig_images/adiv_hominid.png", dpi = 600)
+ggsave(filename = "figures/adiv_hominid.png", dpi = 600)
 
 ### ---- test for homogeneity of variance ----
 
@@ -96,4 +96,4 @@ p2 <- ggboxplot(adiv1, x = "SciName", y = "res",
 
 ## combine
 ggarrange(p1, p2, ncol = 1, labels = c("A.", "B."), font.label = list(size = 20, face = "bold"))
-ggsave(filename = "updated_methods/fig_images/adiv_paneled.png", dpi = 600, height = 10, width =10, units = "in")
+ggsave(filename = "figures/adiv_paneled.png", dpi = 600, height = 10, width =10, units = "in")

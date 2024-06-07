@@ -90,13 +90,13 @@ plot_fungid <- uf %>% ggtree(size = 5, branch.length = "none")%<+% #+
 fin.plot <- grid.arrange(plot_hostup, plot_fungid, ncol = 2, widths = c(1, 0.8))
 
 # save plot
-ggsave(filename = "updated_methods/fig_images/topocong_phylopic_v1.png", plot = fin.plot,
+ggsave(filename = "figures/topocong_phylopic_v1.png", plot = fin.plot,
        dpi = 600)
 
 ### ---- panel B: iris plot ----
 
-# get fungal data; RESTRICTED
-load("my-path/hominid_phyloITS.RData")
+# get fungal data (restricted)
+load("private/hominid_phyloITS.RData")
 
 # genus level
 psfilt <- psf %>% 
@@ -143,7 +143,7 @@ uf %>%
   theme(legend.text = element_text(size = 18))
 
 # save
-ggsave(filename = "updated_methods/fig_images/irisplot_BC-genus.png", dpi = 600)
+ggsave(filename = "figures/irisplot_BC-genus.png", dpi = 600)
 
 ## ---- panel C: within- and between-species ----
 
@@ -276,6 +276,6 @@ p2 <- ggplot(data = fp, aes(x = fct_reorder(fulllab, desc(Distance)), y = Distan
 
 ### arrange both and save
 ggarrange(p1, p2, ncol = 2, widths = c(0.8, 1))
-ggsave("updated_methods/fig_images/pairwise_both.png", dpi = 600,
+ggsave("figures/pairwise_both.png", dpi = 600,
        height = 9, width = 25, units = "in")
 

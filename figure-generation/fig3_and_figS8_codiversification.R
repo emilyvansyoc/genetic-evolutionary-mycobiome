@@ -78,7 +78,7 @@ names(plist) <- names(sigtrees)
 
 ## 5/3; save individually
 for(i in 1:length(plist)){
-  ggsave(plist[[i]], filename = paste0("updated_methods/fig_images/codiv_trees/otutree_", names(sigtrees)[i], ".png"), dpi = 600,
+  ggsave(plist[[i]], filename = paste0("figures/codiv_trees/otutree_", names(sigtrees)[i], ".png"), dpi = 600,
          height = 18, width = 30, units = "in")
 }
 
@@ -90,7 +90,7 @@ plist <- lapply(trees, myPlot)
 
 # save together and make labels in Illustrator to color-code to main text figure
 ggarrange(plotlist = plist, ncol = 2, nrow = 1)
-ggsave(filename = "updated_methods/fig_images/codiv_supplementary.png", dpi = 600)
+ggsave(filename = "figures/codiv_supplementary.png", dpi = 600)
 
 
 ### ----- get full fungi tree and make schematic ----
@@ -139,6 +139,6 @@ tr %>% ggtree() +
   theme(legend.position = "none") +
   scale_fill_manual(values = cols)
 # save
-ggsave(filename = "updated_methods/fig_images/ftree_finalotus.png", dpi = 600)
+ggsave(filename = "figures/ftree_finalotus.png", dpi = 600)
 
 

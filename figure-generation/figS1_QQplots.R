@@ -13,7 +13,7 @@ library(cowplot)
 
 # set pathway to output files (from PLINK)
 ### these files are huge and are not storeable on Github; see final publication for GWAS summary statistics
-path <- "gwas-out/updateITS_results_indep_snp/"
+path <- "private/updateITS_results_indep_snp/"
 
 # read everything in to one dataframe (small enough to do this!)
 myfiles <- list.files(path, pattern = ".adjusted$")
@@ -73,5 +73,5 @@ for(i in 1:length(mytax)) {
 gs <- ggarrange(plotlist = myplotlist, ncol = 6, nrow = 8)
 
 # save
-ggsave(plot = gs, dpi = 600, filename = "R/gwas-output/updateITS_indepSNP_SNP_alltaxa_allQQs.png",
+ggsave(plot = gs, dpi = 600, filename = "figures/updateITS_indepSNP_SNP_alltaxa_allQQs.png",
        width = 20, height = 24, units = "in")

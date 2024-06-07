@@ -82,8 +82,8 @@ mygte1 <- mygte %>%
 
 ## these are PLINK output files 
 #### RESTRICTED
-ped <- read.table("gwas-out/eqtl_genos.ped", header = FALSE)
-map <- read.table("gwas-out/eqtl_genos.map", header = FALSE)
+ped <- read.table("private/eqtl_genos.ped", header = FALSE)
+map <- read.table("private/eqtl_genos.map", header = FALSE)
 names(ped) <- c("IID", "FID", "fam1", "fam2", "fam3", "fam4", "rs10020593_a1", "rs10020593_a2", "rs6842499_a1", "rs6842499_a2", "rs2056279_a1", "rs2056279_a2", "rs2056278_a1", "rs2056278_a2", "rs10003727_a1", "rs10003727_a2", "rs7695409_a1", "rs7695409_a2", "rs11734845_a1", "rs11734845_a2", "rs2162092_a1", "rs2162092_a2", "rs1559699_a1", "rs1559699_a2", "rs28673203_a1", "rs28673203_a2", "rs192598_a1", "rs192598_a2")
 
 ## collapse eQTLs for grouped genes

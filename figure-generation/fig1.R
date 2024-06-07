@@ -15,7 +15,7 @@ library(rstatix)
 ### ---- generate manhattan plots ----
 
 ## get GWAS data for Manhattan plots
-load(file = "data/sigtaxa_alleffects.RData")
+load(file = "private/sigtaxa_alleffects.RData") # this file is too large to share on Github
 sigtaxa <- unique(allsig$Taxa)
 load(file = "data/sigs_SNPandStructural.RData")
 
@@ -274,7 +274,7 @@ ggsave(final.plot, filename = "figures/most_gwas_v1.png", height = 17, width = 2
 
 # get genotypes
 #### RESTRICTED DATA
-gen <- read.table("gwas-out/extractsnps.ped", header = FALSE) %>% 
+gen <- read.table("private/extractsnps.ped", header = FALSE) %>% 
   dplyr::select(V1, V7, V8, V9, V10)
 names(gen) <- c("IID", "rs12149890_a1", "rs12149890_a2", "rs12929586_a1", "rs12929586_a2")
 

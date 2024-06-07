@@ -13,7 +13,8 @@ library(ggtext)
 load("data/phylo-ITS-filteredrarefied_nosubset.RData")
 
 # get pathways
-load("data/stool_pathways.RData")
+# this is too big to store on Github
+load("private/stool_pathways.RData")
 
 ### get data formatted the same way it was input to the lm
 
